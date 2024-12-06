@@ -82,9 +82,10 @@ class CommentUpdateView(CommentEditMixin, LoginRequiredMixin, UpdateView):
     form_class = CreateCommentForm
 
     def dispatch(self, request, *args, **kwargs):
+        comment = get_object_or_404(Comment, pk=self.kwargs["comment_pk"])
         if (
             self.request.user
-            != Comment.objects.get(pk=self.kwargs["comment_pk"]).author
+            != comment.author
         ):
             return redirect("blog:post_detail", pk=self.kwargs["pk"])
 
