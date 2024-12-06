@@ -1,19 +1,12 @@
-from django.urls import path
-from django.views.generic import TemplateView
+from typing import List
 
-app_name = "pages"
+from django.urls import URLPattern, path
 
-urlpatterns = [
-    # Страница о проекте.
-    path(
-        "about/",
-        TemplateView.as_view(template_name="pages/about.html"),
-        name="about",
-    ),
-    # Страница правила.
-    path(
-        "rules/",
-        TemplateView.as_view(template_name="pages/rules.html"),
-        name="rules",
-    ),
+from . import views
+
+app_name: str = "pages"
+
+urlpatterns: List[URLPattern] = [
+    path("about/", views.AboutTemplateView.as_view(), name="about"),
+    path("rules/", views.RulesTemplateView.as_view(), name="rules"),
 ]
