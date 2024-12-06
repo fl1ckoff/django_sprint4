@@ -8,6 +8,16 @@ User = get_user_model()
 
 class PostManager(models.Manager):
     def get_queryset(self):
+        if self.request.user.username == self.kwargs["username"]:
+            return (
+                super()
+                .get_queryset()
+                .select_related(
+                    "category",
+                    "author",
+                    "location",
+                )
+            )
         return (
             super()
             .get_queryset()
