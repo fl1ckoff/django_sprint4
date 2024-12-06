@@ -17,7 +17,7 @@ class PostManager(models.Manager):
                 "location",
             )
             .filter(
-                is_published=False,
+                is_published=True,
                 category__is_published=True,
                 pub_date__lte=timezone.now(),
             )

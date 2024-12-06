@@ -100,7 +100,7 @@ class AuthorProfileListView(PostsQuerySetMixin, ListView):
     template_name = "blog/profile.html"
     paginate_by = PAGINATED_BY
 
-    def get_queryset(self, **kwargs):
+    def get_queryset(self):
         if self.request.user.username == self.kwargs["username"]:
             return (
                 self.request.user.posts.select_related(
