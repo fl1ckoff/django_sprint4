@@ -331,12 +331,4 @@ class CommentDeleteView(CommentMixinView, DeleteView):
 
     CommentMixinView: Базовый класс, предоставляющий функциональность.
     """
-    def get_success_url(self):
-        return reverse("blog:post_detail", kwargs={"pk": self.kwargs["pk"]})
-
-    def delete(self, request, *args, **kwargs):
-        comment = get_object_or_404(Comment, pk=self.kwargs["comment_pk"])
-        if self.request.user != comment.author:
-            return redirect("blog:post_detail", pk=self.kwargs["pk"])
-        return super().delete(request, *args, **kwargs)
-
+    ...
