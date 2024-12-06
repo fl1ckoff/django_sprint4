@@ -174,9 +174,12 @@ class PostDetailView(PostsQuerySetMixin, DetailView):
         return context
 
     def get_queryset(self):
+        if self.request.user.is_authenticated and self.request.user == self.get_object().author:
+            return super().get_queryset()
         return (
             super()
             .get_queryset()
+            .filter(is_published=True)
             .prefetch_related(
                 "comments",
             )
