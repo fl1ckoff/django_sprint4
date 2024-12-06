@@ -331,4 +331,5 @@ class CommentDeleteView(CommentMixinView, DeleteView):
 
     CommentMixinView: Базовый класс, предоставляющий функциональность.
     """
+    
     ...
